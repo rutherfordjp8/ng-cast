@@ -4,10 +4,17 @@ angular.module('video-player')
   // TODO
   
   controller: function() {
-      
+    
     this.videos = window.exampleVideoData;
     this.playingvideo = this.videos[0];
 
+    this.newvideo = (video) => {
+      this.playingvideo = video;
+    };
+
+    this.newvideos = (videos) => {
+      this.videos = videos;
+    };
   },
   
  

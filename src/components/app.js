@@ -3,18 +3,33 @@ angular.module('video-player')
 .component('app', {
   // TODO
   
-  controller: function() {
+  controller: function(youTube) {
     
-    this.videos = window.exampleVideoData;
-    this.playingvideo = this.videos[0];
+    this.videos;
+    this.playingvideo;
 
     this.newvideo = (video) => {
       this.playingvideo = video;
+      youTube.search();
     };
-
+    
     this.newvideos = (videos) => {
       this.videos = videos;
+      this.playingvideo = videos[0];
+    
     };
+    
+    this.enter = (event, query) => {
+      if (event.keyCode === 13) {
+        youTube.search(query, this.newvideos);
+      }
+    };
+    
+    this.searchvideos = (query) => {
+      youTube.search(query, this.newvideos);
+    };
+
+    this.searchvideos('');
   },
   
  
